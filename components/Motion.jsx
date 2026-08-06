@@ -45,7 +45,7 @@ export default function Motion() {
         const t = document.querySelector(id);
         if (t) {
           ev.preventDefault();
-          const y = t.getBoundingClientRect().top + window.scrollY - 64;
+          const y = t.getBoundingClientRect().top + window.scrollY - 24;
           window.scrollTo({ top: y, behavior: reduced ? "auto" : "smooth" });
         }
       }

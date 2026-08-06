@@ -27,24 +27,24 @@ export const nav = [
 export const ticker = [
   { strong: "Open to select engagements", rest: " — Remote, worldwide", dot: true },
   { rest: "Delhi–NCR · India" },
-  { rest: "SDET → Solo builder" },
+  { rest: "SDET → AI eval · Solo builder" },
   { rest: "Vol. 01 · No. 02" },
 ];
 
 export const hero = {
-  eyebrowLeft: "SDET → Solo builder",
+  eyebrowLeft: "SDET → AI eval · Solo builder",
   eyebrowRight: "Remote · Worldwide",
   lede:
-    "Software quality engineer by training — automation, load, and release readiness at scale. Now I build and ship AI products end-to-end: agentic RAG systems, WhatsApp automations, and UPI-native tools.",
+    "Software quality engineer by training — automation, load, and release readiness at scale. Now I evaluate AI coding agents for a living, and build and ship AI products end-to-end: agentic RAG systems, WhatsApp automations, and UPI-native tools.",
   figures: [
-    { n: "4 yrs", lines: ["Owning quality", "across QA & SDET roles"] },
+    { n: "5 yrs", lines: ["Owning quality", "across QA, SDET & AI eval roles"] },
     { n: "0", lines: ["Critical production defects", "across feature releases"] },
     { n: "60–70%", lines: ["Manual test effort removed", "through automation"] },
   ],
   nowBuilding: [
-    { label: "Squared Up", href: "#building" },
+    { label: "Steno", href: "#building" },
     { label: "Git Guide", href: "#building" },
-    { label: "Agent Intelligence", href: "#building" },
+    { label: "Squared Up", href: "#building" },
   ],
 };
 
@@ -73,16 +73,17 @@ export const believe = {
 
 export const ventures = [
   {
-    status: "In design",
-    name: "Squared Up",
-    tag: "UPI expense-splitting",
+    status: "Shipped · on sale",
+    name: "Steno",
+    tag: "Writing standard for AI prose",
     desc:
-      "A UPI-native app for splitting group expenses without the awkward chase. Monzo-inspired design system, built around how people actually settle up.",
+      "A writing standard that makes AI-generated prose read as though a person wrote it — used as a checklist while drafting, or as an editing pass over text that already sounds machine-written. Rules are tiered so structure and stance get fixed before cosmetic tells like em-dash density. Two hard constraints hold it together: nothing invented, nothing dropped — an edit changes how the prose reads, never what it says.",
     meta: [
-      ["Stage", "Design system · prototyping"],
-      ["For", "Groups splitting costs"],
+      ["Ships as", "Claude skill · portable prompt"],
+      ["Model", "One-time purchase"],
     ],
-    repo: null,
+    live: "https://steno-ai.vercel.app",
+    repo: "https://github.com/raghavg27/steno",
   },
   {
     status: "Shipped · open source",
@@ -97,20 +98,32 @@ export const ventures = [
     repo: "https://github.com/raghavg27/git-guide",
   },
   {
-    status: "Nearest revenue",
-    name: "Agent Intelligence",
-    tag: "WhatsApp AI agents",
+    status: "In design",
+    name: "Squared Up",
+    tag: "UPI expense-splitting",
     desc:
-      "An AI receptionist and sales agent for local service businesses — productized on WhatsApp, with UPI deposit collection and a consultative conversation flow. The agent is its own live demo.",
+      "A UPI-native app for splitting group expenses without the awkward chase. Monzo-inspired design system, built around how people actually settle up.",
     meta: [
-      ["Stage", "Building · early customers"],
-      ["For", "Local service businesses"],
+      ["Stage", "Design system · prototyping"],
+      ["For", "Groups splitting costs"],
     ],
     repo: null,
   },
 ];
 
 export const roles = [
+  {
+    co: "Handshake AI",
+    role: "QA Engineer — AI Agent Evaluation (Contract)",
+    dates: "Mar 2026 — Present",
+    loc: "Remote",
+    bullets: [
+      "Designed end-to-end test scenarios for **AI coding agents** — each packaged as a reproducible **Dockerised environment** with a written specification, a reference implementation, and an automated verification suite defining objective pass/fail criteria.",
+      "Applied **boundary, negative and exploratory testing** to surface agent failure modes in long-horizon planning, environment state handling, and recovery from failed tool calls.",
+      "Enforced **determinism** and eliminated flaky verification so results measure agent capability rather than environment defects.",
+      "Extended five years of test-design discipline to **non-deterministic systems**, where correctness is probabilistic and assertions must tolerate valid variation in approach while still catching wrong outcomes.",
+    ],
+  },
   {
     co: "Grey Orange",
     role: "Software Engineer — QA / SDET",

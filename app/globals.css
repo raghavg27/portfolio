@@ -54,9 +54,8 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-of
 @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------- masthead ---------- */
-.masthead{border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:100;
-  background:color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px)}
+.masthead{border-bottom:2px solid var(--ink);position:relative;z-index:100;
+  background:var(--paper)}
 .masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
   padding-top:14px;padding-bottom:12px;flex-wrap:wrap}
 .wordmark{font-family:var(--display);line-height:.9;letter-spacing:-.02em;
@@ -154,7 +153,8 @@ section{padding-block:clamp(54px,7vw,98px);border-bottom:1px solid var(--rule)}
   border-top:1px solid var(--rule-soft);font-size:.85rem}
 .venture dt{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);align-self:center}
 .venture dd{margin:0;color:var(--ink)}
-.venture .repo{margin-top:1rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.04em;
+.venture-links{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:1rem}
+.venture .repo{font-family:var(--mono);font-size:.66rem;letter-spacing:.04em;
   color:var(--accent);display:inline-flex;align-items:center;gap:.5em}
 .venture .repo .arw{display:inline-block;transition:transform .3s var(--ease)}
 .venture .repo:hover .arw{transform:translate(3px,-3px)}

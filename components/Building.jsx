@@ -30,15 +30,29 @@ export default function Building() {
                   </Fragment>
                 ))}
               </dl>
-              {v.repo ? (
-                <a
-                  className="repo"
-                  href={v.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View on GitHub <span className="arw">↗</span>
-                </a>
+              {v.live || v.repo ? (
+                <div className="venture-links">
+                  {v.live ? (
+                    <a
+                      className="repo"
+                      href={v.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit site <span className="arw">↗</span>
+                    </a>
+                  ) : null}
+                  {v.repo ? (
+                    <a
+                      className="repo"
+                      href={v.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View on GitHub <span className="arw">↗</span>
+                    </a>
+                  ) : null}
+                </div>
               ) : null}
             </div>
           ))}
