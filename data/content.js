@@ -27,6 +27,33 @@ export const nav = [
   { label: "Contact", href: "#contact" },
 ];
 
+// Call-to-action buttons. `download` renders the anchor with a download attribute;
+// `external` opens in a new tab. Used by Hero, Masthead, MobileNav and Colophon.
+export const cta = {
+  email: {
+    label: "Email me",
+    href:
+      "mailto:raghavg2705@gmail.com?subject=Work%20with%20Raghav&body=Hi%20Raghav%2C%0A%0A",
+    arw: "↗",
+  },
+  resume: {
+    label: "Download CV",
+    href: "/Raghav-Gupta-Resume.pdf",
+    download: true,
+    arw: "↓",
+  },
+  resumeShort: { label: "CV", href: "/Raghav-Gupta-Resume.pdf", download: true, arw: "↓" },
+  linkedin: {
+    label: "Message on LinkedIn",
+    href: "https://linkedin.com/in/raghavg27/",
+    external: true,
+    arw: "↗",
+  },
+  work: { label: "Read the case studies", href: "/work", arw: "→" },
+  heroNote: "Open to select engagements — remote, worldwide. Replies within a day.",
+  footerNote: "Contract, EOR or full-time via an India-registered entity.",
+};
+
 export const ticker = [
   { strong: "Open to select engagements", rest: " — Remote, worldwide", dot: true },
   { rest: "Delhi–NCR · India" },
