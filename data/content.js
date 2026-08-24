@@ -65,7 +65,7 @@ export const hero = {
   eyebrowLeft: "SDET → AI eval · Solo builder",
   eyebrowRight: "Remote · Worldwide",
   lede:
-    "Software quality engineer by training — automation, load, and release readiness at scale. Now I evaluate AI coding agents for a living, and build and ship AI products end-to-end: agentic RAG systems, WhatsApp automations, and UPI-native tools.",
+    "Software quality engineer by training — automation, load, and release readiness at scale. Now I evaluate AI coding agents for a living, and I build the kind of system I would otherwise be asked to test: agentic RAG, multi-agent research, and a UPI-native payments core proved out with property-based tests.",
   figures: [
     { n: "5 yrs", lines: ["Owning quality", "across QA, SDET & AI eval roles"] },
     { n: "0", lines: ["Critical production defects", "across feature releases"] },

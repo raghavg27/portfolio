@@ -1,4 +1,5 @@
-import { hero, site } from "@/data/content";
+import { hero, site, cta } from "@/data/content";
+import CtaButton from "@/components/CtaButton";
 
 export default function Hero() {
   return (
@@ -10,11 +11,19 @@ export default function Hero() {
         </div>
 
         <h1>
-          I spent years being the last thing between a bug and production. Now I{" "}
-          <em>ship the whole thing</em>.
+          Writing code got cheap. Knowing it is right did not. I work{" "}
+          <em>the second half</em>.
         </h1>
 
         <p className="lede">{hero.lede}</p>
+
+        <div className="cta">
+          <div className="cta-row">
+            <CtaButton item={cta.email} variant="primary" />
+            <CtaButton item={cta.resume} />
+          </div>
+          <p className="cta-note">{cta.heroNote}</p>
+        </div>
 
         <div className="figures ruled">
           {hero.figures.map((f) => (
