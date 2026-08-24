@@ -1,4 +1,5 @@
-import { site, contact } from "@/data/content";
+import { site, cta } from "@/data/content";
+import CtaButton from "@/components/CtaButton";
 
 export default function Colophon() {
   return (
@@ -8,6 +9,15 @@ export default function Colophon() {
           One engineer, a bias for shipping, and a stubborn belief that{" "}
           <em>quality compounds</em>.
         </p>
+
+        <div className="cta invert reveal">
+          <div className="cta-row">
+            <CtaButton item={cta.email} variant="primary" />
+            <CtaButton item={cta.resume} />
+            <CtaButton item={cta.linkedin} variant="ghost" />
+          </div>
+          <p className="cta-note">{cta.footerNote}</p>
+        </div>
 
         <div className="colo-grid reveal">
           <div>
