@@ -72,9 +72,10 @@ export const hero = {
     { n: "60–70%", lines: ["Manual test effort removed", "through automation"] },
   ],
   nowBuilding: [
-    { label: "Steno", href: "#building" },
-    { label: "Git Guide", href: "#building" },
-    { label: "Squared Up", href: "#building" },
+    { label: "Squared Up", href: "/work/squared-up" },
+    { label: "Equity Crew", href: "/work/equity-crew" },
+    { label: "Git Guide", href: "/work/git-guide" },
+    { label: "Steno", href: "/work/steno" },
   ],
 };
 
@@ -499,6 +500,96 @@ Cited answer + source URLs + route pill + response time`,
     shot: null,
   },
 ];
+
+// The AI-evaluation writeup is a case study but not a venture: it has no repo to
+// link (client work) and does not belong in the Building grid. The writeup is
+// itself the artifact for that work.
+export const evaluation = {
+  slug: "ai-agent-evaluation",
+  name: "Evaluating AI coding agents",
+  tag: "Test design for non-deterministic systems",
+  status: "Current assignment · Handshake AI",
+  card:
+    "How I design reproducible evaluation environments for AI coding agents — and what five years of deterministic test design does and does not survive when correctness stops being a single value.",
+  meta: [
+    ["Role", "QA Engineer — AI Agent Evaluation (contract)"],
+    ["Since", "March 2026"],
+    ["Unit of work", "A Dockerised task with a verifier"],
+  ],
+  links: { live: null, repo: null },
+  lede:
+    "Five years of test design rest on one assumption: run it twice, get the same answer. Coding agents break that assumption. Most of what a tester knows survives the break — but only after you rewrite what “pass” means.",
+  problem: [
+    "A deterministic system has one correct output per input, so a test is an equality check. An agent has a set of correct outputs. Two agents can solve the same task by different routes, with different intermediate commands, different file layouts and different orderings, and both be right. Assert on the transcript and you fail correct work. Assert on nothing and you are measuring vibes.",
+    "The second problem is worse, because it is invisible. A failed evaluation is ambiguous by default: when a run goes red, the honest question is whether the agent was wrong or the environment was — a flaky network call, a file leaked from a previous trial, a clock, a version that floated. Until that ambiguity is engineered out, the score is a measurement of your harness rather than of the model.",
+  ],
+  approach: {
+    p: [
+      "The unit of work is a task, and a task is four things that ship together: a written specification, a Dockerised environment, a reference implementation, and an automated verification suite that defines objective pass/fail. Miss any one of them and what you have is not an evaluation, it is an anecdote.",
+      "The reference implementation is not documentation. It is the control. If the verifier does not pass against a known-good solution, the verifier is wrong — and you find that out before an agent's failure gets misattributed to the agent.",
+    ],
+    diagram: `task/
+├── spec.md            what the agent is asked to do, in prose,
+│                      the way a ticket would actually arrive
+│
+├── environment/
+│   └── Dockerfile     pinned base image, pinned dependencies,
+│                      clean container per trial,
+│                      no network access at solve time
+│
+├── solution/          reference implementation — proof the task
+│                      is solvable, and the control the verifier
+│                      is run against first
+│
+└── tests/             the verifier
+                       asserts on outcomes and artifacts
+                       never on the transcript or the route
+                       deterministic, or it does not ship`,
+  },
+  decisions: [
+    {
+      n: "01",
+      h: "Assert on outcomes, never on the route.",
+      p: "The verifier checks what is true once the agent has stopped — the endpoint returns the right shape, the file has the right contents, the process exits clean, the migration applied. Not which commands got it there. That is the whole trick that lets two valid approaches both pass while a wrong outcome still fails, and it is the direct analogue of testing behaviour instead of implementation.",
+    },
+    {
+      n: "02",
+      h: "Determinism is a property you build, not one you hope for.",
+      p: "Pinned base images, pinned dependency versions, no network at solve time, a clean container per trial, and no state carried between runs. Every source of variance that is not the agent gets removed. The payoff is narrow and total: a red run means one thing.",
+    },
+    {
+      n: "03",
+      h: "Failure modes are the design target, not a side effect.",
+      p: "Boundary, negative and exploratory cases are aimed at where agents actually break — long-horizon planning that loses the thread halfway, environment state the agent assumed instead of checked, and recovery after a tool call fails. A task that only exercises the happy path tells you nothing you did not already know about a model that was trained on happy paths.",
+    },
+    {
+      n: "04",
+      h: "A flaky verifier is a broken verifier.",
+      p: "A test that fails one run in twenty is worse than no test, because it launders environment noise into a capability measurement and does it with a straight face. Flakes get fixed or the task gets pulled. They do not get re-run until green.",
+    },
+    {
+      n: "05",
+      h: "Difficulty is calibrated against the reference.",
+      p: "A task every agent trivially passes and a task nothing can pass carry the same amount of signal: none. The reference implementation is the yardstick for how much work a task actually is, which is what lets a set spread across difficulty instead of quietly clustering at whatever was easy to author.",
+    },
+  ],
+  proof: {
+    p: "What carries over from deterministic testing, and what does not.",
+    bullets: [
+      "**Carries over:** boundary analysis, negative cases, equivalence partitioning — the discipline of asking what the input space actually looks like before writing a single assertion.",
+      "**Carries over:** treating the test environment as production code. Pinned, reproducible, reviewed, and owned.",
+      "**Carries over:** distrusting a green run you have never watched fail. A test that has not been proved capable of failing is not evidence.",
+      "**Does not carry over:** exact-match assertions. Correctness is a set, not a value.",
+      "**Does not carry over:** a single run as evidence. When the system under test is probabilistic, the pass/fail criterion has to be stable across runs before any individual result means anything.",
+      "**New:** the reference implementation as a control on the verifier — the closest thing this discipline has to a unit test for the test.",
+    ],
+  },
+  scope: null,
+  shot: null,
+};
+
+// Every case study, in reading order. `/work` lists these; `/work/[slug]` routes them.
+export const allStudies = [evaluation, ...caseStudies];
 
 // -----------------------------------------------------------------------------
 // The Building grid is a projection of `caseStudies`, so a card and its case
