@@ -61,6 +61,14 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${fraunces.variable} ${newsreader.variable} ${spaceMono.variable}`}
     >
+      <head>
+        {/* Motion.jsx is what adds `.in` to revealables. If its bundle never
+            runs, every `.reveal` / `.stagger` stays at opacity 0 and the page
+            reads as blank. Keep the content visible when scripting is off. */}
+        <noscript>
+          <style>{`.reveal,.stagger>*{opacity:1!important;transform:none!important}#progress{display:none}`}</style>
+        </noscript>
+      </head>
       <body>{children}</body>
     </html>
   );
