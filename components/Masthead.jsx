@@ -1,4 +1,6 @@
-import { site, nav } from "@/data/content";
+import { site, nav, cta } from "@/data/content";
+import CtaButton from "@/components/CtaButton";
+import MobileNav from "@/components/MobileNav";
 
 export default function Masthead() {
   return (
@@ -11,13 +13,17 @@ export default function Masthead() {
           </span>
           <span className="tagline">{site.tagline}</span>
         </div>
-        <nav className="main" aria-label="Primary">
-          {nav.map((n) => (
-            <a key={n.href} href={n.href}>
-              {n.label}
-            </a>
-          ))}
-        </nav>
+        <div className="mast-actions">
+          <nav className="main" aria-label="Primary">
+            {nav.map((n) => (
+              <a key={n.href} href={n.href}>
+                {n.label}
+              </a>
+            ))}
+          </nav>
+          <CtaButton item={cta.resumeShort} className="mast-cv" />
+          <MobileNav />
+        </div>
       </div>
     </header>
   );
