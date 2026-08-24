@@ -1,0 +1,111 @@
+# Career-Ops Profile Configuration
+# User layer — never auto-updated by update-system.mjs.
+
+candidate:
+  full_name: "Raghav Gupta"
+  email: "raghavg2705@gmail.com"
+  phone: "+91 9818476527"
+  wechat: ""
+  location: "Delhi, India"
+  linkedin: "linkedin.com/in/raghavg27"
+  portfolio_url: "https://build-with-raghav.vercel.app"
+  github: "github.com/raghavg27"
+  twitter: ""
+  photo: ""
+  photo_style: rounded
+
+target_roles:
+  primary:
+    - "Senior SDET"
+    - "SDET"
+    - "AI Eval Engineer"
+    - "AI Agent Evaluation Engineer"
+    - "Full-Stack Software Engineer"
+    - "Product Engineer"
+  archetypes:
+    - name: "SDET / Software Engineer in Test"
+      level: "Mid-Senior"
+      fit: "primary"
+    - name: "AI Agent Evaluation / AI Eval Engineer"
+      level: "Mid-Senior"
+      fit: "primary"
+    # Added 2026-08-24 after the Sticker Mule evaluation (report #001). Roles
+    # that screen on code samples and writing rather than job titles are a
+    # genuine target: the portfolio (squared-up, equity-crew, git-guide) carries
+    # this archetype even though the professional title history does not.
+    - name: "Full-Stack / Product Engineer (AI-heavy teams)"
+      level: "Mid"
+      fit: "adjacent"
+    - name: "Automation Engineer"
+      level: "Mid-Senior"
+      fit: "secondary"
+    - name: "QA Engineer"
+      level: "Mid-Senior"
+      fit: "secondary"
+
+narrative:
+  headline: "SDET who extended test design discipline from deterministic systems to AI agents"
+  exit_story: >-
+    Five years proving out other people's systems — mobile, web, warehouse robotics —
+    and then AI agents arrived and broke the assumption test engineering was built on:
+    that correctness is binary. I moved toward that break rather than away from it.
+    At Handshake AI I design reproducible evaluation environments for coding agents;
+    on my own time I build the agent systems themselves, and I build them the way a
+    tester would — a multi-agent equity research crew that validates before it
+    recommends, a RAG assistant that refuses to answer without a citation, a payments
+    core proved out with property-based tests over integer paise. I am looking for the
+    role where those two halves are the same job: building AI systems, and being the
+    person who can prove they work.
+  superpowers:
+    - "Test design that survives non-determinism — objective pass/fail criteria for AI agents whose correctness is probabilistic"
+    - "Owning test infrastructure end to end: in-house PyTest + Page Object Model frameworks, CI/CD-integrated, flake-free"
+    - "Builds the systems he evaluates — multi-agent LLM applications designed around grounding, validation and citation"
+    - "Full-stack quality range: functional, API, mobile, and JMeter performance/load testing under peak throughput"
+  proof_points:
+    - name: "equity-crew — multi-agent equity research (CrewAI)"
+      url: "https://github.com/raghavg27/equity-crew"
+      hero_metric: "Five specialised agents fusing fundamentals, neural news search, from-scratch technical indicators and sector peer benchmarking into a validated BUY/HOLD/SELL PDF report"
+    - name: "git-guide — multi-agent RAG over GitLab documentation"
+      url: "https://github.com/raghavg27/git-guide"
+      hero_metric: "CrewAI + ChromaDB + Streamlit; async parallel processing and smart routing, with answers grounded and citation-enforced against source docs"
+    - name: "squared-up — India-first expense splitter (Django/DRF + React PWA)"
+      url: "https://github.com/raghavg27/squared-up"
+      hero_metric: "Money core held in integer paise and verified with Hypothesis property-based tests; UPI one-tap settlement, installable PWA, Dockerised"
+
+compensation:
+  target_range: "₹1,00,00,000"     # ₹1 Cr total comp
+  currency: "INR"
+  minimum: "₹30,00,000"            # ₹30 LPA walk-away
+  location_flexibility: "Remote only. Any country/timezone as an independent contractor invoicing from India; full-time employment only via an India-registered entity."
+
+location:
+  country: "India"
+  city: "Delhi"
+  timezone: "IST"
+  # Employee work authorization (immigration sense) — India only. This is what
+  # an ATS "are you authorized to work in {country}?" question is asking about.
+  visa_status: "Indian citizen, based in Delhi. Employee work authorization: India only. Available worldwide as an independent contractor (B2B / contract-of-record / EOR), invoicing from India — no visa or sponsorship required for that engagement model."
+  authorized_in: ["India"]
+  # false: not seeking sponsorship. Non-India work is taken as a contractor from
+  # India, which needs no visa — NOT as a locally-employed hire.
+  needs_sponsorship: false
+  # Engagement models accepted, in preference order.
+  engagement_models:
+    - "Independent contractor / B2B (worldwide, invoiced from India)"
+    - "Employer of Record (EOR) / contract-of-record (worldwide)"
+    - "Full-time employee (India-registered entity only)"
+
+language:
+  output: en
+
+spend_tier: standard
+
+cv:
+  output_format: "html"
+  # NOTE: section order is deliberately NOT set here. Projects-before-Experience
+  # is right for portfolio-screened roles (report #001) and wrong for SDET roles,
+  # so it is applied per-render with --allow-reorder rather than globally.
+
+cover_letter:
+  notice_period_days: 10           # TODO: confirm your actual notice period
+  primary_domain: "software quality engineering / AI agent evaluation"
