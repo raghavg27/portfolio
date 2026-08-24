@@ -2,6 +2,7 @@ import Motion from "@/components/Motion";
 import Ribbon from "@/components/Ribbon";
 import Masthead from "@/components/Masthead";
 import Hero from "@/components/Hero";
+import Now from "@/components/Now";
 import Believe from "@/components/Believe";
 import Building from "@/components/Building";
 import Record from "@/components/Record";
@@ -16,8 +17,9 @@ export default function Home() {
       <Masthead />
       <main>
         <Hero />
-        <Believe />
+        <Now />
         <Building />
+        <Believe />
         <Record />
         <Skills />
       </main>

@@ -20,8 +20,9 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Believe", href: "#believe" },
+  { label: "Now", href: "#now" },
   { label: "Building", href: "#building" },
+  { label: "Believe", href: "#believe" },
   { label: "Record", href: "#record" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
@@ -77,6 +78,25 @@ export const hero = {
     { label: "Git Guide", href: "/work/git-guide" },
     { label: "Steno", href: "/work/steno" },
   ],
+};
+
+// -----------------------------------------------------------------------------
+// The "Now" band — sits directly under the hero so the AI-evaluation work, which
+// is the whole SDET → AI-eval pivot, is the first concrete thing on the page.
+// It links to the `evaluation` case study below, which is its artifact.
+// -----------------------------------------------------------------------------
+export const now = {
+  folio: "§ Current assignment",
+  meta: "Handshake AI · Contract · Since March 2026 · Remote",
+  lede:
+    "Correctness used to be binary: run it twice, get the same answer. AI coding agents broke that assumption, and I moved toward the break rather than away from it. I design the evaluation environments that decide whether an agent actually did the job — and the hard part is not the agent, it is making a red run mean exactly one thing.",
+  anatomy: [
+    { k: "Specification", v: "The task in prose, the way a ticket would arrive." },
+    { k: "Environment", v: "Dockerised, pinned, no network at solve time." },
+    { k: "Reference", v: "A known-good solution — the control on the verifier." },
+    { k: "Verifier", v: "Objective pass/fail on outcomes, never on the transcript." },
+  ],
+  link: { label: "How I test an agent", href: "/work/ai-agent-evaluation", arw: "→" },
 };
 
 export const believe = {
