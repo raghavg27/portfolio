@@ -54,3 +54,6 @@ yarn-error.log*
 # turbo / caches
 .turbo
 .eslintcache
+
+# agent tooling scratch
+.playwright-mcp/
