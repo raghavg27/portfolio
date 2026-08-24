@@ -702,6 +702,7 @@ export const skills = {
         "Playwright",
         "Appium",
         "PyTest",
+        "Hypothesis",
         "JUnit",
         "Page Object Model",
         "JMeter",
@@ -710,7 +711,14 @@ export const skills = {
     },
     {
       h: "AI / Backend",
-      items: ["CrewAI · Agentic RAG", "ChromaDB", "Django", "Node.js", "REST / OpenAPI"],
+      items: [
+        "CrewAI · Agentic RAG",
+        "ChromaDB",
+        "Django / DRF",
+        "React",
+        "Node.js",
+        "REST / OpenAPI",
+      ],
     },
     {
       h: "DevOps & CI/CD",
@@ -718,7 +726,7 @@ export const skills = {
         "Jenkins",
         "Docker",
         "Kubernetes",
-        "Git / GitHub",
+        "Git / GitHub Actions",
         "Grafana",
         "JIRA · TestRail · Confluence",
       ],
