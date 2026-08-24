@@ -1,25 +1,27 @@
 import { Fragment } from "react";
-import { ventures } from "@/data/content";
+import { building, ventures } from "@/data/content";
 
 export default function Building() {
   return (
     <section id="building" className="ventures">
       <div className="wrap">
         <div className="sechead reveal">
-          <span className="folio">§ In progress · 3 active</span>
+          <span className="folio">§ Selected work · {building.folioCount} projects</span>
           <h2>
-            What I&apos;m <em>building</em> right now.
+            What I&apos;ve <em>built</em> and how.
           </h2>
         </div>
 
         <div className="ventures-grid stagger">
           {ventures.map((v) => (
-            <div className="venture" key={v.name}>
+            <div className="venture" key={v.slug}>
               <div className="status">
                 <span className="pip" />
                 {v.status}
               </div>
-              <h3>{v.name}</h3>
+              <h3>
+                <a href={`/work/${v.slug}`}>{v.name}</a>
+              </h3>
               <div className="tag">{v.tag}</div>
               <p>{v.desc}</p>
               <dl>
@@ -30,32 +32,39 @@ export default function Building() {
                   </Fragment>
                 ))}
               </dl>
-              {v.live || v.repo ? (
-                <div className="venture-links">
-                  {v.live ? (
-                    <a
-                      className="repo"
-                      href={v.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Visit site <span className="arw">↗</span>
-                    </a>
-                  ) : null}
-                  {v.repo ? (
-                    <a
-                      className="repo"
-                      href={v.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View on GitHub <span className="arw">↗</span>
-                    </a>
-                  ) : null}
-                </div>
-              ) : null}
+              <div className="venture-links">
+                <a className="repo cs-link" href={`/work/${v.slug}`}>
+                  Read the case study <span className="arw">→</span>
+                </a>
+                {v.live ? (
+                  <a
+                    className="repo"
+                    href={v.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit site <span className="arw">↗</span>
+                  </a>
+                ) : null}
+                {v.repo ? (
+                  <a
+                    className="repo"
+                    href={v.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on GitHub <span className="arw">↗</span>
+                  </a>
+                ) : null}
+              </div>
             </div>
           ))}
+        </div>
+
+        <div className="ventures-foot reveal">
+          <a href={building.link.href}>
+            {building.link.label} <span className="arw">{building.link.arw}</span>
+          </a>
         </div>
       </div>
     </section>
