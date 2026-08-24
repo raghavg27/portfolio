@@ -1,0 +1,104 @@
+<!doctype html>
+<!--
+  Source for app/opengraph-image.png (1200×630). Regenerate after editing:
+
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+    --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
+    --window-size=1200,630 --virtual-time-budget=8000 \
+    --screenshot="$PWD/app/opengraph-image.png" \
+    "file://$PWD/scripts/og-image.html"
+
+  Tokens are copied from app/globals.css — keep them in sync by hand.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F0EDE8; --ink:#1B1A17; --ink-soft:#3A362F; --muted:#6E685E;
+    --accent:#9A2B1E; --rule:rgba(27,26,23,.20); --rule-soft:rgba(27,26,23,.11);
+    --display:"Fraunces",Georgia,serif; --mono:"Space Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    background:var(--paper);color:var(--ink);
+    background-image:radial-gradient(rgba(27,26,23,.030) 1px,transparent 1px);
+    background-size:4px 4px;
+    display:flex;flex-direction:column;
+  }
+  .ribbon{
+    background:var(--ink);color:rgba(240,237,232,.78);
+    font-family:var(--mono);font-size:14px;letter-spacing:.22em;text-transform:uppercase;
+    padding:13px 64px;display:flex;align-items:center;gap:14px;flex:none;
+  }
+  .ribbon .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .ribbon .b{color:var(--paper)}
+  .ribbon .sep{color:rgba(240,237,232,.35)}
+  .body{flex:1;min-height:0;padding:44px 64px 0;display:flex;flex-direction:column}
+  .brand{display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+    border-bottom:2px solid var(--ink);padding-bottom:22px}
+  .wordmark{font-family:var(--display);font-size:60px;line-height:.9;letter-spacing:-.02em;
+    display:flex;align-items:baseline}
+  .wordmark .a1{font-weight:340;color:#847D6C}
+  .wordmark .a2{font-weight:800;margin-left:.2em}
+  .issue{font-family:var(--mono);font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+  h1{font-family:var(--display);font-weight:340;font-size:60px;line-height:1.02;letter-spacing:-.02em;
+    margin-top:30px;max-width:20ch}
+  h1 em{font-style:italic;font-weight:500;color:var(--accent)}
+  .figures{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--rule);padding-bottom:34px}
+  .fig{padding:20px 30px;border-left:1px solid var(--rule-soft)}
+  .fig:first-child{border-left:0;padding-left:0}
+  .fig .n{font-family:var(--display);font-weight:600;font-size:38px;line-height:1;letter-spacing:-.01em}
+  .fig .l{font-family:var(--mono);font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--muted);margin-top:11px;line-height:1.5}
+  .foot{background:var(--ink);color:rgba(240,237,232,.62);font-family:var(--mono);font-size:13px;
+    letter-spacing:.2em;text-transform:uppercase;padding:15px 64px;display:flex;
+    justify-content:space-between;flex:none}
+  .foot .a{color:var(--paper)}
+</style>
+</head>
+<body>
+  <div class="ribbon">
+    <span class="dot"></span>
+    <span class="b">Open to select engagements</span>
+    <span class="sep">·</span>
+    <span>Remote, worldwide</span>
+    <span class="sep">·</span>
+    <span>Delhi–NCR · India</span>
+  </div>
+
+  <div class="body">
+    <div class="brand">
+      <span class="wordmark"><span class="a1">Raghav</span><span class="a2">Gupta</span></span>
+      <span class="issue">Vol. 01 · No. 02</span>
+    </div>
+
+    <h1>Writing code got cheap. Knowing it is right did not. I work <em>the second half</em>.</h1>
+
+    <div class="figures">
+      <div class="fig">
+        <div class="n">5 yrs</div>
+        <div class="l">Owning quality<br />QA · SDET · AI eval</div>
+      </div>
+      <div class="fig">
+        <div class="n">0</div>
+        <div class="l">Critical production defects<br />across feature releases</div>
+      </div>
+      <div class="fig">
+        <div class="n">60–70%</div>
+        <div class="l">Manual test effort removed<br />through automation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="a">build-with-raghav.vercel.app</span>
+    <span>SDET → AI eval · Solo builder</span>
+  </div>
+</body>
+</html>
