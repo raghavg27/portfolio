@@ -1,4 +1,39 @@
+import { Fraunces, Newsreader, Space_Mono } from "next/font/google";
+
 import "./globals.css";
+
+// Self-hosted at build time — no request leaves the page for a font, and no
+// render-blocking stylesheet on fonts.googleapis.com sits in front of FCP.
+// Fraunces carries the opsz axis because headlines run from .6rem to 3.4rem
+// and its default optical size is 14 — `font-optical-sizing: auto` in
+// globals.css is a no-op without it.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  display: "swap",
+  variable: "--font-display",
+  fallback: ["Georgia", "serif"],
+});
+
+// No opsz here on purpose: Newsreader's default optical size is 16, which is
+// what body copy is set at, and carrying the axis doubles the file.
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-body",
+  fallback: ["Georgia", "serif"],
+});
+
+// Space Mono is not a variable font and is only ever set upright here.
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-mono",
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+});
 
 const favicon =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F0EDE8'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='800' text-anchor='middle' fill='%231B1A17'%3ER%3C/text%3E%3C/svg%3E";
@@ -22,19 +57,10 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="en"
+      className={`${fraunces.variable} ${newsreader.variable} ${spaceMono.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

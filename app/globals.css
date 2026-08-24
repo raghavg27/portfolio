@@ -10,9 +10,13 @@
   --accent-soft:#E9A79B;
   --rule:rgba(27,26,23,.20);
   --rule-soft:rgba(27,26,23,.11);
-  --display:"Fraunces", Georgia, serif;
-  --body:"Newsreader", Georgia, serif;
-  --mono:"Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* The three --font-* variables are declared by next/font in layout.jsx,
+     which self-hosts the families and appends its own metric-matched fallback.
+     The literal family names are the var() fallback, for any context that
+     renders this stylesheet without the layout (the OG screenshot, say). */
+  --display:var(--font-display, "Fraunces"), Georgia, serif;
+  --body:var(--font-body, "Newsreader"), Georgia, serif;
+  --mono:var(--font-mono, "Space Mono"), ui-monospace, "SFMono-Regular", Menlo, monospace;
   --maxw:1120px;
   --gutter:clamp(20px,5vw,64px);
   --ease:cubic-bezier(.2,.7,.2,1);
