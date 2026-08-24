@@ -7,12 +7,15 @@
 export const site = {
   name: { first: "Raghav", last: "Gupta" },
   tagline: "Engineer · Builder · Remote, worldwide",
-  issue: "Vol. 01 · No. 02",
+  issue: "Vol. 01 · No. 03",
   github: "https://github.com/raghavg27",
   email: "raghavg2705@gmail.com",
   linkedin: "https://linkedin.com/in/raghavg27/",
   phone: "+91 98184 76527",
   phoneHref: "+919818476527",
+  url: "https://build-with-raghav.vercel.app",
+  location: "Delhi–NCR, India",
+  resume: "/Raghav-Gupta-Resume.pdf",
   year: 2026,
 };
 
@@ -28,7 +31,7 @@ export const ticker = [
   { strong: "Open to select engagements", rest: " — Remote, worldwide", dot: true },
   { rest: "Delhi–NCR · India" },
   { rest: "SDET → AI eval · Solo builder" },
-  { rest: "Vol. 01 · No. 02" },
+  { rest: "Vol. 01 · No. 03" },
 ];
 
 export const hero = {
