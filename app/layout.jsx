@@ -1,5 +1,6 @@
 import { Fraunces, Newsreader, Space_Mono } from "next/font/google";
 
+import { site } from "@/data/content";
 import "./globals.css";
 
 // Self-hosted at build time — no request leaves the page for a font, and no
@@ -39,12 +40,24 @@ const favicon =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F0EDE8'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='800' text-anchor='middle' fill='%231B1A17'%3ER%3C/text%3E%3C/svg%3E";
 
 export const metadata = {
+  // Required for the relative URLs below and for the opengraph-image file
+  // convention to resolve to absolute URLs in the emitted meta tags.
+  metadataBase: new URL(site.url),
   title: "Raghav Gupta — Engineer / Builder",
   description:
     "Raghav Gupta — SDET turned solo builder. Years as the last quality gate before release; now shipping AI products end-to-end. Remote, worldwide.",
   icons: { icon: favicon },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
+    url: "/",
+    siteName: "Raghav Gupta",
+    title: "Raghav Gupta — Engineer / Builder",
+    description:
+      "SDET turned solo builder. Shipping AI products end-to-end. Remote, worldwide.",
+  },
+  twitter: {
+    card: "summary_large_image",
     title: "Raghav Gupta — Engineer / Builder",
     description:
       "SDET turned solo builder. Shipping AI products end-to-end. Remote, worldwide.",
@@ -53,6 +66,35 @@ export const metadata = {
 
 export const viewport = {
   themeColor: "#F0EDE8",
+};
+
+// One Person node for the whole site, so a search engine can tie the name, the
+// profiles and the CV together instead of inferring them from the copy.
+const personLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${site.url}/#person`,
+  name: `${site.name.first} ${site.name.last}`,
+  url: site.url,
+  image: `${site.url}/opengraph-image.png`,
+  jobTitle: "Software Engineer in Test / AI Product Builder",
+  description:
+    "SDET turned solo builder. Years as the last quality gate before release; now evaluating and shipping AI products end-to-end.",
+  email: `mailto:${site.email}`,
+  telephone: site.phoneHref,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Delhi–NCR",
+    addressCountry: "IN",
+  },
+  sameAs: [site.github, site.linkedin],
+  knowsAbout: [
+    "AI agent evaluation",
+    "Test automation",
+    "Software quality engineering",
+    "Python",
+    "Next.js",
+  ],
 };
 
 export default function RootLayout({ children }) {
@@ -69,7 +111,13 @@ export default function RootLayout({ children }) {
           <style>{`.reveal,.stagger>*{opacity:1!important;transform:none!important}#progress{display:none}`}</style>
         </noscript>
       </head>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
