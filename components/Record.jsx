@@ -1,13 +1,5 @@
-import { Fragment } from "react";
 import { roles } from "@/data/content";
-
-// Render **bold** markers inside a bullet string as <b> nodes.
-function withBold(str) {
-  const parts = str.split("**");
-  return parts.map((part, i) =>
-    i % 2 === 1 ? <b key={i}>{part}</b> : <Fragment key={i}>{part}</Fragment>
-  );
-}
+import withBold from "@/components/withBold";
 
 export default function Record() {
   return (
