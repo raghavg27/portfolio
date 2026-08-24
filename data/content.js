@@ -729,3 +729,51 @@ export const skills = {
 export const contact = {
   closing: "One engineer, a bias for shipping, and a stubborn belief that quality compounds.",
 };
+
+// -----------------------------------------------------------------------------
+// /resume — the printable CV. Reuses `roles` and `skills` above; everything
+// unique to the CV page lives here. Regenerate the PDF after editing this:
+// see "Resume PDF" in CLAUDE.md.
+// -----------------------------------------------------------------------------
+export const resume = {
+  headline: "SDET who extended test-design discipline from deterministic systems to AI agents",
+  summary:
+    "Five years proving out other people's systems — mobile, web, warehouse robotics — then AI agents arrived and broke the assumption test engineering was built on: that correctness is binary. At Handshake AI I design reproducible evaluation environments for coding agents; on my own time I build the agent systems themselves, the way a tester would. Looking for the role where those two halves are the same job.",
+  strengths: [
+    "Test design that survives non-determinism — objective pass/fail criteria for AI agents whose correctness is probabilistic.",
+    "Owning test infrastructure end to end: in-house PyTest + Page Object Model frameworks, CI/CD-integrated, flake-free.",
+    "Builds the systems he evaluates — multi-agent LLM applications designed around grounding, validation and citation.",
+    "Full-stack quality range: functional, API, mobile, and JMeter performance/load testing under peak throughput.",
+  ],
+  projects: [
+    {
+      name: "squared-up",
+      tag: "India-first expense splitter · Django/DRF + React PWA",
+      url: "https://github.com/raghavg27/squared-up",
+      line: "Money core held in integer paise and verified with Hypothesis property-based tests; UPI one-tap settlement, installable PWA, Dockerised.",
+    },
+    {
+      name: "equity-crew",
+      tag: "Multi-agent equity research · CrewAI",
+      url: "https://github.com/raghavg27/equity-crew",
+      line: "Five specialised agents fusing fundamentals, neural news search, from-scratch technical indicators and sector peer benchmarking into a validated BUY/HOLD/SELL PDF report.",
+    },
+    {
+      name: "git-guide",
+      tag: "Agentic RAG over GitLab docs",
+      url: "https://github.com/raghavg27/git-guide",
+      line: "CrewAI + ChromaDB + Streamlit; async parallel processing and smart routing, with every answer grounded and citation-enforced against source docs.",
+    },
+    {
+      name: "Steno",
+      tag: "Writing standard for AI prose",
+      url: "https://steno-ai.vercel.app",
+      line: "A tiered editing standard that makes AI-generated prose read as though a person wrote it. Ships as a Claude skill and a portable prompt.",
+    },
+  ],
+  availability: [
+    ["Engagement", "Independent contractor / B2B · EOR · full-time via an India-registered entity"],
+    ["Location", "Delhi, India · remote worldwide, any timezone"],
+    ["Work authorisation", "Indian citizen. No visa or sponsorship required for contract engagements."],
+  ],
+};
