@@ -20,11 +20,11 @@ There is no test runner, no linter, and no TypeScript in this project. `npm run 
 
 A fully static editorial portfolio: one long page at `/`, long-form case studies at `/work` and `/work/[slug]`, and a printable CV at `/resume` (`/cv` redirects to it). Next.js 16 App Router + React 19, three dependencies total. No database, no API routes, no server actions, no Tailwind.
 
-**Content/presentation split is the core convention.** Every string, number, URL, and list on the site lives in `data/content.js` as named exports (`site`, `nav`, `cta`, `ticker`, `hero`, `now`, `believe`, `caseStudies`, `evaluation`, `allStudies`, `building`, `ventures`, `roles`, `skills`, `contact`, `resume`). Components in `components/` import those exports and only map over them. Copy edits belong in `data/content.js`; component files change only when markup or structure changes.
+**Content/presentation split is the core convention.** Every string, number, URL, and list on the site lives in `data/content.js` as named exports (`site`, `nav`, `cta`, `ticker`, `hero`, `now`, `services`, `servicesSection`, `method`, `caseStudies`, `evaluation`, `allStudies`, `building`, `ventures`, `systems`, `systemDesigns`, `roles`, `skills`, `resume`). Components in `components/` import those exports and only map over them. Copy edits belong in `data/content.js`; component files change only when markup or structure changes.
 
-`app/page.jsx` assembles the whole page by composing one component per section in order: `Motion`, `Ribbon`, `Masthead`, then `<main>` with `Hero`, `Now`, `Building`, `Believe`, `Record`, `Skills`, then `Colophon`. Section ids (`#now`, `#building`, `#believe`, `#record`, `#skills`, `#contact`) are the anchor targets that `nav` in `data/content.js` links to — adding a section means adding both the component and the nav entry, and `nav` order must match page order.
+`app/page.jsx` assembles the whole page by composing one component per section in order: `Motion`, `Ribbon`, `Masthead`, then `<main>` with `Hero`, `Services`, `Building`, `Systems`, `Method`, `Now`, `Record`, `Skills`, then `Colophon`. Section ids (`#services`, `#building`, `#systems`, `#method`, `#now`, `#record`, `#skills`, `#contact`) are the anchor targets that `nav` in `data/content.js` links to — adding a section means adding both the component and the nav entry, and `nav` order must match page order (`#now` is deliberately left out of the nav; the masthead row is at its width limit at 1280px with seven links).
 
-`Now` is deliberately the first section: the AI-agent-evaluation work is the pivot the whole site argues for, so it sits directly under the hero instead of waiting for `Record`. Its "read more" target is the `evaluation` case study, which is the artifact for work that has no public repo.
+The site is positioned for **clients**, not a job search: `Services` sits directly under the hero, the hero's primary button is the `cta.upgrade` hook ("Get yourself upgraded"), and the masthead button is `cta.hire` (→ `#contact`). The CV stays reachable from the Colophon, the mobile menu and `/resume`. AI use is pitched subtly on purpose — Claude is named in the Method "Build" step and the stack list, not in headlines. `Now` (the AI-agent-evaluation band) still links to the `evaluation` case study, which is the artifact for work that has no public repo.
 
 **The `/work` routes are the depth layer.** `app/work/page.jsx` lists `allStudies`; `app/work/[slug]/page.jsx` renders one via `components/CaseStudy.jsx`, with `generateStaticParams` over `allStudies` and `notFound()` for anything else. Both pages compose `Motion` + `components/PageBar.jsx` (the slim bar, reusing the `.resume-bar` styles) + `Colophon`, not `Masthead` — the masthead nav is all `#` anchors that do not resolve off the long page.
 
@@ -48,7 +48,10 @@ Components make assumptions about `data/content.js` that will break silently if 
 
 - `roles[].bullets` — strings where `**text**` renders bold. `components/withBold.jsx` splits on `**` and bolds odd-index parts, so asterisks must be balanced. Used by both `Record.jsx` and `/resume`.
 - `cta.*` — each entry is `{ label, href, arw?, download?, external? }` and is rendered by `components/CtaButton.jsx`. `download` and `external` are mutually exclusive; `arw` is the trailing glyph, and `↗` gets the diagonal hover nudge via `[data-arw]`.
-- `caseStudies[]` — the single source for both the Building grid and `/work/[slug]`. `ventures` is derived from it by `.map()`, so a card and its case study cannot drift apart; edit `caseStudies`, never `ventures`. The full field list is documented in a comment above the array — only `slug`, `name`, `tag`, `status`, `card`, `meta`, `links` and `lede` are required, and `CaseStudy.jsx` omits any block whose field is absent.
+- `services[]` — `{ slug, name, line, deliverables[], proof: { label, href } | null, turnaround }`; `href` (a prefilled `mailto`) is added by `.map()` from the name. `proof` must point at work that exists on this site — use `null` rather than inventing one. `turnaround` is rendered only when set; only put a number there the owner has confirmed. The same array feeds the `makesOffer` JSON-LD in `app/layout.jsx` and `/llms.txt`.
+- `systems.picks[]` — `{ slug, concerns[] }`. `systemDesigns` is derived from `caseStudies` (diagram from `approach.diagram`, headlines from `decisions[].h`), so a picked study must have both. `Systems.jsx` renders each as a native `<details>` so it stays a server component.
+- `method.steps[]` — `{ no, h, p }`, rendered by `Method.jsx` with the `.laws` / `.law` markup plus `.steps` for the 4-up grid.
+- `caseStudies[]` — the single source for both the Building grid and `/work/[slug]`. `ventures` is derived from it by `.map()`, so a card and its case study cannot drift apart; edit `caseStudies`, never `ventures`. The Building grid is two columns, and an odd last card spans the full row (`.venture:last-child:nth-child(odd)`), so any number of studies lays out cleanly. The full field list is documented in a comment above the array — only `slug`, `name`, `tag`, `status`, `card`, `meta`, `links` and `lede` are required, and `CaseStudy.jsx` omits any block whose field is absent.
 - `evaluation` — the same shape, kept out of `caseStudies` because it is not a venture (no repo, no card in the grid). `allStudies = [evaluation, ...caseStudies]` is what the routes and the prev/next footer walk.
 - `caseStudies[].meta` / `evaluation.meta` — array of `[key, value]` pairs, rendered into a `<dl>`.
 - `caseStudies[].links` — `{ live, repo }`; use `null`, not `""`. A card's links block always carries the case-study link, so it is never empty; the case-study header's button row is omitted when both are falsy.
@@ -56,7 +59,7 @@ Components make assumptions about `data/content.js` that will break silently if 
 - `hero.figures[].lines` — array of strings joined with `<br />`.
 - `ticker[]` — `{ strong?, rest, dot? }`; `Ribbon.jsx` duplicates the array once for a seamless marquee loop.
 - Case-study prose (`problem`, `approach.p`, `decisions[].p`, `proof`, `scope`) is rendered by `components/richText.jsx`, which is a superset of `withBold`: `**bold**`, `` `code` ``, and `**`nested`**`. It splits on `**` first so a code span wrapped in bold survives; both markers must be balanced or the rest of the string inherits the mark.
-- `Hero`, `Now`, `Believe`, `Building`, `Record`, `Skills`, `Colophon` hard-code their `<h2>`/`<h1>` headlines and the `Colophon` closing line in JSX rather than reading them from `data/content.js`. The Building folio count is data-driven (`building.folioCount`).
+- `Hero`, `Services`, `Building`, `Systems`, `Method`, `Now`, `Record`, `Skills`, `Colophon` hard-code their `<h2>`/`<h1>` headlines and the `Colophon` closing line in JSX rather than reading them from `data/content.js`. The Building folio count is data-driven (`building.folioCount`).
 
 `data/future.js` holds parked ventures and is imported by nothing. To revive one, copy the object into `ventures` in `data/content.js`.
 
@@ -71,10 +74,11 @@ Two binaries in the repo are generated, not authored. Both are regenerated with 
 
 ## SEO surface
 
-Four things carry the site's machine-readable identity, and all four read `site.url` from `data/content.js` — change the origin there, not in any of them:
+Five things carry the site's machine-readable identity, and all five read `site.url` from `data/content.js` — change the origin there, not in any of them:
 
 - `app/robots.js` and `app/sitemap.js` — the metadata file conventions, emitted at `/robots.txt` and `/sitemap.xml`. The sitemap walks `allStudies`, so a new case study appears in it automatically; `/cv` is left out on purpose because it is a permanent redirect.
-- The `personLd` JSON-LD `Person` node in `app/layout.jsx`, rendered as a `<script type="application/ld+json">` at the top of `<body>`.
+- The `personLd` JSON-LD `Person` node in `app/layout.jsx`, rendered as a `<script type="application/ld+json">` at the top of `<body>`. Its `makesOffer` list is mapped from `services`.
+- `app/llms.txt/route.js` — a `force-static` GET handler, prerendered at build, that writes `/llms.txt` from `hero`, `services` and `allStudies`. It is the site practising the AEO service it sells; it is not an API route in the sense the no-API rule means.
 - `alternates.canonical` — the root layout sets `/`, and **every** route that adds its own metadata must set its own, or it inherits the root's and self-canonicalises to the homepage.
 - `metadataBase`, above.
 
