@@ -6,8 +6,7 @@ export default function Colophon() {
     <footer id="contact" className="colophon">
       <div className="wrap">
         <p className="big reveal">
-          One engineer, a bias for shipping, and a stubborn belief that{" "}
-          <em>quality compounds</em>.
+          Get yourself <em>upgraded</em> — contact me.
         </p>
 
         <div className="cta invert reveal">

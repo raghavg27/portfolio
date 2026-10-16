@@ -8,7 +8,7 @@ export default function Building() {
         <div className="sechead reveal">
           <span className="folio">§ Selected work · {building.folioCount} projects</span>
           <h2>
-            What I&apos;ve <em>built</em> and how.
+            Work I&apos;ve <em>shipped</em>, and how.
           </h2>
         </div>
 

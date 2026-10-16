@@ -6,7 +6,7 @@
 
 export const site = {
   name: { first: "Raghav", last: "Gupta" },
-  tagline: "Engineer · Builder · Remote, worldwide",
+  tagline: "Websites · Software · AI systems",
   issue: "Vol. 01 · No. 03",
   github: "https://github.com/raghavg27",
   email: "raghavg2705@gmail.com",
@@ -66,21 +66,21 @@ export const cta = {
 };
 
 export const ticker = [
-  { strong: "Open to select engagements", rest: " — Remote, worldwide", dot: true },
+  { strong: "Taking new projects", rest: " — Remote, worldwide", dot: true },
+  { rest: "Websites · Full-stack apps · RAG · AI automation" },
+  { rest: "AEO · Security audits · AI evaluation" },
   { rest: "Delhi–NCR · India" },
-  { rest: "SDET → AI eval · Solo builder" },
-  { rest: "Vol. 01 · No. 03" },
 ];
 
 export const hero = {
-  eyebrowLeft: "SDET → AI eval · Solo builder",
+  eyebrowLeft: "Full-stack & AI engineer",
   eyebrowRight: "Remote · Worldwide",
   lede:
-    "Software quality engineer by training — automation, load, and release readiness at scale. Now I evaluate AI coding agents for a living, and I build the kind of system I would otherwise be asked to test: agentic RAG, multi-agent research, and a UPI-native payments core proved out with property-based tests.",
+    "I design and build websites, full apps, RAG pipelines and AI automation — with AI deep in my workflow, so one engineer covers what used to need a team. Five years as the last quality gate before release is why it holds up after launch: everything below was built to be proved, not just demoed.",
   figures: [
     { n: "5 yrs", lines: ["Owning quality", "across QA, SDET & AI eval roles"] },
+    { n: "4", lines: ["Products shipped solo", "from spec to working software"] },
     { n: "0", lines: ["Critical production defects", "across feature releases"] },
-    { n: "60–70%", lines: ["Manual test effort removed", "through automation"] },
   ],
   nowBuilding: [
     { label: "Squared Up", href: "/work/squared-up" },
@@ -1028,10 +1028,6 @@ export const skills = {
       ],
     },
   ],
-};
-
-export const contact = {
-  closing: "One engineer, a bias for shipping, and a stubborn belief that quality compounds.",
 };
 
 // -----------------------------------------------------------------------------

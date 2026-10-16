@@ -11,8 +11,7 @@ export default function Hero() {
         </div>
 
         <h1>
-          Writing code got cheap. Knowing it is right did not. I work{" "}
-          <em>the second half</em>.
+          AI made building fast. I make it fast <em>and right</em>.
         </h1>
 
         <p className="lede">{hero.lede}</p>
