@@ -20,11 +20,12 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Now", href: "#now" },
-  { label: "Building", href: "#building" },
+  { label: "Services", href: "#services" },
+  { label: "Work", href: "#building" },
+  { label: "Systems", href: "#systems" },
   { label: "Method", href: "#method" },
   { label: "Record", href: "#record" },
-  { label: "Skills", href: "#skills" },
+  { label: "Stack", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
 
