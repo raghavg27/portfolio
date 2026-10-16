@@ -1,6 +1,6 @@
 import { Fraunces, Newsreader, Space_Mono } from "next/font/google";
 
-import { site } from "@/data/content";
+import { services, site } from "@/data/content";
 import "./globals.css";
 
 // Self-hosted at build time — no request leaves the page for a font, and no
@@ -43,24 +43,24 @@ export const metadata = {
   // Required for the relative URLs below and for the opengraph-image file
   // convention to resolve to absolute URLs in the emitted meta tags.
   metadataBase: new URL(site.url),
-  title: "Raghav Gupta — Engineer / Builder",
+  title: "Raghav Gupta — Websites, software & AI systems, built fast and proved",
   description:
-    "Raghav Gupta — SDET turned solo builder. Years as the last quality gate before release; now shipping AI products end-to-end. Remote, worldwide.",
+    "Raghav Gupta designs and builds websites, full-stack apps, RAG pipelines and AI automation — fast, with AI in the workflow, and proved with five years of test engineering. AEO, security audits and AI evaluation too. Remote, worldwide.",
   icons: { icon: favicon },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "/",
     siteName: "Raghav Gupta",
-    title: "Raghav Gupta — Engineer / Builder",
+    title: "Raghav Gupta — Websites, software & AI systems",
     description:
-      "SDET turned solo builder. Shipping AI products end-to-end. Remote, worldwide.",
+      "Built fast with AI, proved with five years of test engineering. Websites, full apps, RAG, AI automation, AEO and security audits. Remote, worldwide.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Raghav Gupta — Engineer / Builder",
+    title: "Raghav Gupta — Websites, software & AI systems",
     description:
-      "SDET turned solo builder. Shipping AI products end-to-end. Remote, worldwide.",
+      "Built fast with AI, proved with five years of test engineering. Websites, full apps, RAG, AI automation, AEO and security audits. Remote, worldwide.",
   },
 };
 
@@ -77,9 +77,9 @@ const personLd = {
   name: `${site.name.first} ${site.name.last}`,
   url: site.url,
   image: `${site.url}/opengraph-image.png`,
-  jobTitle: "Software Engineer in Test / AI Product Builder",
+  jobTitle: "Full-stack & AI engineer",
   description:
-    "SDET turned solo builder. Years as the last quality gate before release; now evaluating and shipping AI products end-to-end.",
+    "Designs and builds websites, full-stack apps, RAG pipelines and AI automation, with five years of test engineering behind every release.",
   email: `mailto:${site.email}`,
   telephone: site.phoneHref,
   address: {
@@ -89,12 +89,28 @@ const personLd = {
   },
   sameAs: [site.github, site.linkedin],
   knowsAbout: [
+    "Retrieval-augmented generation",
+    "AI automation",
+    "Answer engine optimization",
     "AI agent evaluation",
+    "Application security testing",
     "Test automation",
-    "Software quality engineering",
-    "Python",
+    "System design",
     "Next.js",
+    "Django",
+    "PostgreSQL",
   ],
+  // One Offer per service card, so the services are machine-readable from the
+  // same data the page renders.
+  makesOffer: services.map((s) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: s.name,
+      description: s.line,
+      url: `${site.url}/#services`,
+    },
+  })),
 };
 
 export default function RootLayout({ children }) {
