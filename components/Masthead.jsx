@@ -21,7 +21,7 @@ export default function Masthead() {
               </a>
             ))}
           </nav>
-          <CtaButton item={cta.resumeShort} className="mast-cv" />
+          <CtaButton item={cta.hire} variant="primary" className="mast-cv" />
           <MobileNav />
         </div>
       </div>

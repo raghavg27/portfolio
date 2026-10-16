@@ -19,8 +19,9 @@ export default function Hero() {
 
         <div className="cta">
           <div className="cta-row">
-            <CtaButton item={cta.email} variant="primary" />
-            <CtaButton item={cta.resume} />
+            <CtaButton item={cta.upgrade} variant="primary" />
+            <CtaButton item={cta.whatsapp} />
+            <CtaButton item={cta.services} variant="ghost" />
           </div>
           <p className="cta-note">{cta.heroNote}</p>
         </div>

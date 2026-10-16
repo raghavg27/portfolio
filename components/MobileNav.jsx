@@ -116,8 +116,8 @@ export default function MobileNav() {
           </nav>
 
           <div className="mobile-cta">
-            <CtaButton item={cta.email} variant="primary" />
-            <CtaButton item={cta.resume} />
+            <CtaButton item={cta.upgrade} variant="primary" />
+            <CtaButton item={cta.whatsapp} />
           </div>
 
           <div className="mobile-meta">

@@ -13,8 +13,9 @@ export default function Colophon() {
         <div className="cta invert reveal">
           <div className="cta-row">
             <CtaButton item={cta.email} variant="primary" />
-            <CtaButton item={cta.resume} />
-            <CtaButton item={cta.linkedin} variant="ghost" />
+            <CtaButton item={cta.whatsapp} />
+            <CtaButton item={cta.linkedin} />
+            <CtaButton item={cta.resume} variant="ghost" />
           </div>
           <p className="cta-note">{cta.footerNote}</p>
         </div>
@@ -51,9 +52,13 @@ export default function Colophon() {
             </div>
           </div>
           <div>
-            <div className="k">Phone</div>
+            <div className="k">Phone · WhatsApp</div>
             <div className="v">
               <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+              <br />
+              <a href={cta.whatsapp.href} target="_blank" rel="noopener noreferrer">
+                Message on WhatsApp
+              </a>
             </div>
           </div>
         </div>

@@ -27,7 +27,7 @@ export default function WorkIndex() {
       <Motion />
       <PageBar backLabel="← Raghav Gupta">
         <CtaButton item={cta.email} />
-        <CtaButton item={cta.resumeShort} variant="primary" />
+        <CtaButton item={cta.upgrade} variant="primary" />
       </PageBar>
 
       <div className="worklist">

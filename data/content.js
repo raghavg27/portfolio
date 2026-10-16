@@ -28,15 +28,24 @@ export const nav = [
   { label: "Contact", href: "#contact" },
 ];
 
+// A prefilled email. Every service card gets its own subject line from this.
+const mailto = (subject) =>
+  `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Hi Raghav,\n\n")}`;
+
 // Call-to-action buttons. `download` renders the anchor with a download attribute;
 // `external` opens in a new tab. Used by Hero, Masthead, MobileNav and Colophon.
 export const cta = {
-  email: {
-    label: "Email me",
-    href:
-      "mailto:raghavg2705@gmail.com?subject=Work%20with%20Raghav&body=Hi%20Raghav%2C%0A%0A",
+  // The hook. Primary button in the hero and the mobile menu.
+  upgrade: { label: "Get yourself upgraded", href: mailto("Get me upgraded"), arw: "↗" },
+  email: { label: "Contact me", href: mailto("Work with Raghav"), arw: "↗" },
+  whatsapp: {
+    label: "WhatsApp",
+    href: `https://wa.me/${site.phoneHref.replace("+", "")}`,
+    external: true,
     arw: "↗",
   },
+  services: { label: "See services", href: "#services", arw: "↓" },
+  hire: { label: "Hire me", href: "#contact", arw: "→" },
   resume: {
     label: "Download CV",
     href: "/Raghav-Gupta-Resume.pdf",
@@ -51,8 +60,8 @@ export const cta = {
     arw: "↗",
   },
   work: { label: "Read the case studies", href: "/work", arw: "→" },
-  heroNote: "Open to select engagements — remote, worldwide. Replies within a day.",
-  footerNote: "Contract, EOR or full-time via an India-registered entity.",
+  heroNote: "Taking new projects — remote, worldwide. Replies within a day.",
+  footerNote: "Remote, worldwide · Independent contractor, invoiced from India.",
 };
 
 export const ticker = [
