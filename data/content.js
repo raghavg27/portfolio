@@ -142,6 +142,106 @@ export const believe = {
 // -----------------------------------------------------------------------------
 export const caseStudies = [
   {
+    slug: "shway",
+    name: "Shway",
+    tag: "Landing page for a social-plans app",
+    status: "Live · letshway.com",
+    card:
+      "The marketing site for Shway, “Tinder for your plans”. The hero is a swipe deck you can actually drag, flick and match with, followed by scroll-driven storytelling and an autoplay gallery that pauses when you look at it. GSAP with ScrollTrigger, Draggable and SplitText over Lenis smooth scroll, in hand-written HTML, CSS and JavaScript with no build step.",
+    meta: [
+      ["Stack", "HTML · CSS · vanilla JS · GSAP"],
+      ["Motion", "ScrollTrigger · Draggable · SplitText · Lenis"],
+      ["Hosted", "Vercel"],
+    ],
+    links: { live: "https://www.letshway.com", repo: null },
+    lede:
+      "A landing page that makes the pitch by letting you do it. Shway is “Tinder for your plans”, so the hero is a deck of plan cards you can drag, flick and match with — the product's core gesture, playable before the download.",
+    problem: [
+      "An app-store landing page has one job, getting the download, and one problem: the product lives on a phone, and a visitor on a laptop has never touched it. Screenshots describe the swipe; they do not let you feel it.",
+      "The rebuild also had to be a drop-in replacement for the page before it: the same contact endpoint and fields, the same `/event-details/` share links that open the app, analytics on the store buttons — while getting faster, more accessible and properly marked up for search.",
+    ],
+    approach: {
+      p: [
+        "No framework and no build step: one HTML document, one stylesheet, one `main.js`, and GSAP's plugins loaded as vendor scripts. Every effect is progressive enhancement — each init function checks for GSAP and for `prefers-reduced-motion` first, so the page is complete and usable before, or without, any animation.",
+        "Lenis handles smooth scrolling and is driven from GSAP's own ticker, with `ScrollTrigger.update` on every Lenis scroll event — one clock for both, so scroll-linked animation never drifts against the scroll position.",
+      ],
+      diagram: `index.html · site.css · main.js       no build step
+      │
+      │  vendor: gsap · ScrollTrigger · Draggable · SplitText
+      │          lenis · canvas-confetti
+      ▼
+main.js — one IIFE, one init per section
+  guard:  hasGsap?   prefers-reduced-motion?
+      │
+      ├─ initDeck      Draggable swipe deck · velocity flick
+      │                JOIN / NOPE stamps · "You Matched!" reveal
+      ├─ introHero     SplitText word reveal after fonts.ready
+      ├─ initHow       IntersectionObserver drives the phone screen
+      ├─ initGallery   autoplay belt with named pause "holds"
+      ├─ initStats     ScrollTrigger count-up, once
+      ├─ initStories   CSS animationend is the autoplay timer
+      ├─ initNavSpy    scroll-spy + sliding nav indicator
+      ├─ initVideo     Vimeo iframe loads only while open
+      └─ initContact   validate, then POST to the existing backend
+      │
+      ▼
+Lenis smooth scroll ── driven by gsap.ticker ── ScrollTrigger.update
+
+/event-details/:slug ──► shway:// deep link ──► store fallback after 2s`,
+    },
+    decisions: [
+      {
+        n: "01",
+        h: "The hero is the product's gesture, not a picture of it.",
+        p: "The deck is six plan cards on GSAP `Draggable`. Release velocity is smoothed on every drag frame (`0.8 × current + 0.2 × previous`), so a short, fast flick decides a card just as a long drag past 110px does. Drag right and a JOIN stamp fades in, left and NOPE does; a miss snaps back on an elastic ease. A match opens a “You Matched!” card through a `clip-path` circle reveal with confetti — and fires an analytics event, so the toy is also measured.",
+      },
+      {
+        n: "02",
+        h: "Motion is an enhancement, never a dependency.",
+        p: "Every animated init checks `hasGsap` and `prefers-reduced-motion` before doing anything. With reduced motion the deck still works — buttons and arrow keys decide cards instantly — the gallery becomes a plain snap carousel with no autoplay, the testimonials stop rotating, and the typed text appears whole. Nothing is hidden behind an animation that might not run.",
+      },
+      {
+        n: "03",
+        h: "Autoplay that knows when to stop.",
+        p: "The gallery belt scrolls itself and pauses for named reasons — hover, touch, keyboard focus, mouse drag, an arrow nudge, the tab being hidden, the belt being off-screen. Each reason is held and released independently, so one ending never restarts the belt while another still applies. Keyboard focus only counts when it is `:focus-visible`, because a tap also focuses the track and would otherwise freeze it.",
+      },
+      {
+        n: "04",
+        h: "One clock for scroll and animation.",
+        p: "Lenis is advanced from `gsap.ticker` with lag smoothing off, and every Lenis scroll event calls `ScrollTrigger.update`. Two independent animation loops would let scroll-triggered motion run a frame behind the scroll; one shared ticker keeps them in step. The video modal stops Lenis while it is open and restarts it on close.",
+      },
+      {
+        n: "05",
+        h: "A redesign that breaks nothing it replaced.",
+        p: "The contact form posts the same fields to the same backend endpoint as before, and `/event-details/<slug>` share links still try the `shway://` deep link first, falling back to the App Store or Play Store after two seconds. A redesign that quietly breaks inbound links and lead capture is a regression, however good it looks.",
+      },
+      {
+        n: "06",
+        h: "Heavy assets load on demand.",
+        p: "The Vimeo iframe has no `src` until the modal opens and is blanked again on close. Gallery and section images are lazy-loaded; only the first deck card's image is preloaded, because it is the largest thing above the fold.",
+      },
+    ],
+    proof: {
+      p: "The page is live, and everything here can be checked in its source.",
+      bullets: [
+        "**Structured data** — a JSON-LD graph with `Organization`, `WebSite`, `MobileApplication` and an eight-question `FAQPage` that matches the eight FAQ entries on the page.",
+        "**Crawl surface** — `robots.txt`, `sitemap.xml`, a canonical URL and full Open Graph tags.",
+        "**Accessible interaction** — the deck is a labelled, focusable region that answers to arrow keys; only the top card is exposed to assistive tech; a polite live region announces skips and matches; Escape closes the match dialog.",
+        "**Form validation without a library** — required fields are checked on submit and marked `aria-invalid`, focus moves to the first problem, and the status line says what to fix.",
+        "**Deployed on Vercel** behind HSTS.",
+      ],
+    },
+    scope: null,
+    shot: {
+      src: "/work/shway-site.png",
+      w: 1600,
+      h: 866,
+      alt: "The Shway landing page hero: the headline “Done going solo?”, App Store and Google Play badges, and a draggable plan card for morning tennis in Cubbon Park, Bengaluru, with skip and like buttons beneath it.",
+      cap: "The live hero. The card is the top of a six-card deck — drag it, flick it, or use the buttons and arrow keys.",
+    },
+  },
+
+  {
     slug: "squared-up",
     name: "Squared Up",
     tag: "UPI-native expense splitting",
