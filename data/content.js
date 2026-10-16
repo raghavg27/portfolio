@@ -863,6 +863,60 @@ export const ventures = caseStudies.map((c) => ({
   repo: c.links.repo,
 }));
 
+// -----------------------------------------------------------------------------
+// The Systems band — the system-design showcase. Like `ventures`, it is a
+// projection of `caseStudies`: the diagram and the decision headlines are read
+// from the case study, so the two cannot drift apart. Only `concerns` (the
+// chips) is written here, and each one names something the case study covers.
+// -----------------------------------------------------------------------------
+export const systems = {
+  folio: "§ System design",
+  intro:
+    "Fast is only useful if the shape is right. Three of the systems above, drawn out — the boundaries, the data flow, and the decisions that hold them together. Each links to the full case study.",
+  picks: [
+    {
+      slug: "squared-up",
+      concerns: [
+        "Modular monolith",
+        "Framework-free domain core",
+        "Idempotent mutations",
+        "Derived, never stored, state",
+        "Authz matrix as tests",
+      ],
+    },
+    {
+      slug: "equity-crew",
+      concerns: [
+        "Parallel fan-out",
+        "Schema-first output",
+        "Guardrail and retry loop",
+        "Preflight validation",
+      ],
+    },
+    {
+      slug: "git-guide",
+      concerns: [
+        "Query routing",
+        "Async pre-processing",
+        "Relevance floor",
+        "Local embeddings · $0 to run",
+      ],
+    },
+  ],
+};
+
+export const systemDesigns = systems.picks.map(({ slug, concerns }) => {
+  const c = caseStudies.find((s) => s.slug === slug);
+  return {
+    slug,
+    name: c.name,
+    tag: c.tag,
+    concerns,
+    diagram: c.approach.diagram,
+    decisions: c.decisions.map((d) => d.h),
+  };
+});
+
 export const roles = [
   {
     co: "Handshake AI",

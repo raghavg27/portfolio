@@ -6,6 +6,7 @@ import Services from "@/components/Services";
 import Now from "@/components/Now";
 import Believe from "@/components/Believe";
 import Building from "@/components/Building";
+import Systems from "@/components/Systems";
 import Record from "@/components/Record";
 import Skills from "@/components/Skills";
 import Colophon from "@/components/Colophon";
@@ -21,6 +22,7 @@ export default function Home() {
         <Services />
         <Now />
         <Building />
+        <Systems />
         <Believe />
         <Record />
         <Skills />
