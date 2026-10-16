@@ -22,7 +22,7 @@ export const site = {
 export const nav = [
   { label: "Now", href: "#now" },
   { label: "Building", href: "#building" },
-  { label: "Believe", href: "#believe" },
+  { label: "Method", href: "#method" },
   { label: "Record", href: "#record" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
@@ -231,25 +231,34 @@ export const servicesSection = {
   link: { ...cta.upgrade, label: "Not sure which? Get yourself upgraded" },
 };
 
-export const believe = {
-  folio: "§ What I believe",
+// -----------------------------------------------------------------------------
+// The Method band — how the speed and the proof fit together. AI is named in
+// the Build step and nowhere else on purpose: it is the tool, not the pitch.
+// -----------------------------------------------------------------------------
+export const method = {
+  folio: "§ How I work",
   intro:
-    "Testing taught me the cheapest bug is the one you design out before it exists. The same instinct now runs my products: ship small, watch it break, fix the loop — then add scope. Taste and tight feedback beat headcount.",
-  principles: [
+    "AI writes a lot of my first drafts — code, tests, copy. That is what lets one engineer move at the pace of a team. What it does not do is decide when the work is right. That part is five years of test engineering, and it is built into every step.",
+  steps: [
     {
-      no: "Principle 01",
-      h: "Break it before your users do.",
-      p: "Every feature earns a way to fail loudly in staging first. Confidence at release is built, never assumed.",
+      no: "Step 01 · Spec",
+      h: "Pin down what done means.",
+      p: "Before any code: the outcome, the edge cases, and the check that will prove it. On Squared Up that was a written domain spec whose worked examples later became the test suite.",
     },
     {
-      no: "Principle 02",
-      h: "Automate the boring, own the judgement.",
-      p: "Machines run the regression pass. I keep the calls that need context — what to test, what to ship, what to hold.",
+      no: "Step 02 · Build",
+      h: "Build with Claude in the loop.",
+      p: "Claude Code is my main engineering tool, set up per project: context engineering in a project memory file that records the architecture and its contracts, custom skills, MCP servers for the browser and outside tools, and sub-agents for parallel research and review. Plan first, then build, then check the result in a real browser. It is how a solo build covers frontend, backend and infrastructure without cutting corners.",
     },
     {
-      no: "Principle 03",
-      h: "Grounded beats clever.",
-      p: "Whether it's a test suite or a RAG agent, I'd rather ship something cited, predictable, and honest than a demo that hallucinates.",
+      no: "Step 03 · Verify",
+      h: "Prove it, don't eyeball it.",
+      p: "Property-based tests on money math, schema guardrails on agent output, relevance floors on retrieval, verifiers checked against a reference solution. AI speeds up the writing; the checks make it safe to ship.",
+    },
+    {
+      no: "Step 04 · Ship",
+      h: "Ship small, then widen.",
+      p: "Dockerised, deployed, observable — and honest about scope: what shipped, what is parked, and why. Then the next loop starts from real use instead of guesses.",
     },
   ],
 };

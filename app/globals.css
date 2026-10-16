@@ -143,7 +143,7 @@ section{padding-block:clamp(54px,7vw,98px);border-bottom:1px solid var(--rule)}
   transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease)}
 .ruled.in::before{transform:scaleX(1)}
 
-/* ---------- credo ---------- */
+/* ---------- credo / method ---------- */
 .credo .intro,.systems .intro{font-size:clamp(1.2rem,2vw,1.6rem);max-width:52ch;line-height:1.4;margin:0 0 3rem;color:var(--ink-soft)}
 .credo .intro em{font-style:italic}
 .laws{display:grid;grid-template-columns:repeat(3,1fr)}
@@ -154,6 +154,8 @@ section{padding-block:clamp(54px,7vw,98px);border-bottom:1px solid var(--rule)}
 .law .no{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
 .law h3{font-family:var(--display);font-weight:500;font-size:1.35rem;line-height:1.12;margin:.7rem 0 .6rem}
 .law p{margin:0;color:var(--muted);font-size:.98rem}
+/* the four method steps: 4-up, 2×2 below 1060px, stacked below 860px */
+.steps{grid-template-columns:repeat(4,1fr)}
 
 /* ---------- ventures ---------- */
 .ventures-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);
@@ -549,6 +551,9 @@ code.ic{font-family:var(--mono);font-size:.82em;
 /* ---------- responsive ---------- */
 @media(max-width:1060px){
   .services-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .steps .law:nth-child(odd){border-left:0;padding-left:0}
+  .steps .law:nth-child(n+3){border-top:1px solid var(--rule-soft)}
 }
 @media(max-width:860px){
   .now-grid{grid-template-columns:1fr}
