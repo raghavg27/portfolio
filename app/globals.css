@@ -194,6 +194,33 @@ section{padding-block:clamp(54px,7vw,98px);border-bottom:1px solid var(--rule)}
 .ventures-foot .arw{display:inline-block;transition:transform .3s var(--ease)}
 .ventures-foot a:hover .arw{transform:translateX(4px)}
 
+/* ---------- services ---------- */
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule)}
+.service{background:var(--paper);padding:1.6rem 1.35rem 1.7rem;display:flex;flex-direction:column;
+  position:relative;transition:background .4s var(--ease)}
+.service::after{content:"";position:absolute;left:0;top:0;height:100%;width:2px;background:var(--accent);
+  transform:scaleY(0);transform-origin:top;transition:transform .4s var(--ease)}
+.service:hover{background:color-mix(in srgb, var(--paper-2) 35%, var(--paper))}
+.service:hover::after{transform:scaleY(1)}
+.service .ix{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--accent)}
+.service h3{font-family:var(--display);font-weight:600;font-size:1.3rem;line-height:1.1;
+  letter-spacing:-.01em;margin:.7rem 0 .7rem;text-wrap:balance}
+.service p{margin:0 0 1.2rem;color:var(--ink-soft);font-size:.95rem}
+.service ul{list-style:none;margin:0 0 1.3rem;padding:.9rem 0 0;border-top:1px solid var(--rule-soft);
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.03em;line-height:1.5;color:var(--muted);flex:1}
+.service li{position:relative;padding:.22rem 0 .22rem 1.2em}
+.service li::before{content:"+";position:absolute;left:0;color:var(--accent)}
+.service .turn{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);margin-bottom:1rem}
+.service-links{display:flex;flex-direction:column;gap:.6rem;font-family:var(--mono);font-size:.64rem;
+  letter-spacing:.04em}
+.service-links a{color:var(--accent)}
+.service-links .ask{font-weight:700}
+.service-links .arw{display:inline-block;transition:transform .3s var(--ease)}
+.service-links .proof-link:hover .arw{transform:translateX(4px)}
+.service-links .ask:hover .arw{transform:translate(3px,-3px)}
+
 /* ---------- the record ---------- */
 .record{display:grid;gap:0}
 .role{display:grid;grid-template-columns:minmax(180px,1fr) 3fr;gap:clamp(1rem,4vw,3rem);
@@ -492,6 +519,9 @@ code.ic{font-family:var(--mono);font-size:.82em;
 @keyframes riseIn{from{transform:translateY(105%)}to{transform:translateY(0)}}
 
 /* ---------- responsive ---------- */
+@media(max-width:1060px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:860px){
   .now-grid{grid-template-columns:1fr}
   .scope{grid-template-columns:1fr;gap:1.8rem}
@@ -522,6 +552,7 @@ code.ic{font-family:var(--mono);font-size:.82em;
   .figures .fig{border-left:0;padding-left:0;padding-block:1.2rem;border-top:1px solid var(--rule-soft)}
   .figures .fig:first-child{border-top:0}
   .skill-cols{column-gap:1.4rem;font-size:.76rem}
+  .services-grid{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}

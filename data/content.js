@@ -108,6 +108,129 @@ export const now = {
   link: { label: "How I test an agent", href: "/work/ai-agent-evaluation", arw: "→" },
 };
 
+// -----------------------------------------------------------------------------
+// Services — the first section under the hero. Every card's `proof` points at
+// work that already exists on this site; a service with nothing to point at
+// gets `proof: null` rather than an invented example. `turnaround` is optional
+// and rendered only when present — only put a number here you can stand behind.
+// `href` (a prefilled email) is added below from the service name.
+// -----------------------------------------------------------------------------
+const serviceList = [
+  {
+    slug: "websites",
+    name: "Website design & build",
+    line: "Editorial, fast, hand-tuned sites — designed, written and built by the same person, so nothing gets lost between the mockup and the code.",
+    deliverables: [
+      "Design and front end in Next.js / React",
+      "Motion with GSAP, Framer Motion or three.js",
+      "Structured data, sitemap and social cards",
+      "Deployed on Vercel",
+    ],
+    proof: { label: "Shway — GSAP landing page", href: "/work/shway" },
+    turnaround: "1–3 weeks",
+  },
+  {
+    slug: "apps",
+    name: "Software & apps from scratch",
+    line: "Spec to working product: backend, database, frontend and the tests that keep it honest — one engineer owning the whole stack.",
+    deliverables: [
+      "Django / DRF or Node.js APIs",
+      "PostgreSQL, Supabase, Redis",
+      "React / Next.js web apps and installable PWAs",
+      "Dockerised, with the test suite in CI",
+    ],
+    proof: { label: "Squared Up — payments app", href: "/work/squared-up" },
+    turnaround: "4–8 weeks to a first release",
+  },
+  {
+    slug: "automation",
+    name: "AI automation workflows",
+    line: "Multi-step work an LLM can do reliably — research, triage, reporting — built as agents with schemas, guardrails and retries, so the output is something you can check.",
+    deliverables: [
+      "Multi-agent pipelines",
+      "Validated, structured output — not free text",
+      "Retries and failures a person can read",
+      "Generated reports — PDF, markdown",
+    ],
+    proof: { label: "Equity Crew — research agents", href: "/work/equity-crew" },
+    turnaround: "1–3 weeks",
+  },
+  {
+    slug: "rag",
+    name: "RAG pipelines",
+    line: "Assistants that answer from your own documents, cite their sources, and refuse when retrieval is too weak to support an answer.",
+    deliverables: [
+      "Ingestion, chunking and embeddings",
+      "Vector store setup and retrieval tuning",
+      "Citations on every answer, relevance floors",
+      "Latency work: routing, parallel pre-processing",
+    ],
+    proof: { label: "Git Guide — docs assistant", href: "/work/git-guide" },
+    turnaround: "2–4 weeks",
+  },
+  {
+    slug: "aeo",
+    name: "AEO — answer-engine optimisation",
+    line: "Make your site legible to ChatGPT, Claude, Perplexity and AI search answers: structured data, crawl rules that admit assistant bots, and pages written to be quoted.",
+    deliverables: [
+      "Schema.org structured data",
+      "robots, sitemap and llms.txt",
+      "Long-form pages written to be cited",
+    ],
+    proof: { label: "Steno — structured data & crawl rules", href: "/work/steno" },
+    turnaround: "1–2 weeks",
+  },
+  {
+    slug: "security",
+    name: "Security & compliance audit",
+    line: "An application security review from someone who has spent five years breaking software before users could — plus readiness reviews against SOC 2, ISO 27001, GDPR and India's DPDP Act, so the formal audit holds no surprises.",
+    deliverables: [
+      "Authorization matrix, tested rather than assumed",
+      "IDOR / enumeration and replay checks",
+      "Security headers and dependency review",
+      "SOC 2 · ISO 27001 · GDPR · DPDP gap assessment",
+    ],
+    proof: { label: "Squared Up — authz matrix", href: "/work/squared-up" },
+    turnaround: "1–3 weeks",
+  },
+  {
+    slug: "evaluation",
+    name: "AI agent & LLM evaluation",
+    line: "Before your AI feature ships, find out whether it actually works: reproducible eval environments, objective verifiers, and failure modes hunted on purpose.",
+    deliverables: [
+      "Dockerised, deterministic eval tasks",
+      "Reference solutions as verifier controls",
+      "Boundary and negative cases aimed at agents",
+      "Pass/fail you can trust — no flakes",
+    ],
+    proof: { label: "How I test an agent", href: "/work/ai-agent-evaluation" },
+    turnaround: "2–4 weeks for a first eval suite",
+  },
+  {
+    slug: "testing",
+    name: "Test automation",
+    line: "Regression suites that run themselves and stay green for the right reasons — web, mobile and API, wired into CI.",
+    deliverables: [
+      "Playwright (web) and Maestro (mobile)",
+      "PyTest frameworks, Page Object Model",
+      "API and JMeter load testing",
+      "CI integration and flake triage",
+    ],
+    proof: { label: "Record — 60–70% less manual effort", href: "#record" },
+    turnaround: "2–4 weeks for a first suite in CI",
+  },
+];
+
+export const services = serviceList.map((s) => ({
+  ...s,
+  href: mailto(`Project: ${s.name}`),
+}));
+
+export const servicesSection = {
+  folio: `§ Services · ${services.length}`,
+  link: { ...cta.upgrade, label: "Not sure which? Get yourself upgraded" },
+};
+
 export const believe = {
   folio: "§ What I believe",
   intro:
