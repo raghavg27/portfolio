@@ -981,50 +981,55 @@ export const roles = [
 
 export const skills = {
   note:
-    "Full-stack on quality and delivery — from writing the framework to reading the Grafana board at 2 a.m. Comfortable across languages, test tooling, AI/RAG systems, and the DevOps chain that ships it.",
+    "Full-stack, end to end: the interface, the API, the data, the AI layer, and the test-and-deploy chain that keeps it all running.",
   education: {
     school: "SRM Institute of Science and Technology",
     detail: "B.E. Computer Engineering · 2017–2021",
   },
   groups: [
     {
-      h: "Languages & Data",
-      items: ["Python", "JavaScript", "SQL", "PostgreSQL", "MongoDB / NoSQL", "Bash"],
+      h: "Frontend",
+      items: ["Next.js", "React", "GSAP · ScrollTrigger", "Lenis", "three.js", "Framer Motion", "HTML / CSS"],
     },
     {
-      h: "Test & Automation",
+      h: "Backend",
+      items: ["Python", "Django / DRF", "Node.js", "JavaScript", "REST / OpenAPI"],
+    },
+    {
+      h: "Data",
+      items: ["PostgreSQL", "Supabase", "Redis", "Vector DBs · ChromaDB", "MongoDB / NoSQL"],
+    },
+    {
+      h: "AI",
       items: [
-        "Selenium",
+        "Claude Code · skills · MCP",
+        "Sub-agents · context engineering",
+        "Agentic RAG",
+        "CrewAI multi-agent",
+        "Embeddings",
+        "LLM / agent evaluation",
+      ],
+    },
+    {
+      h: "Testing & Automation",
+      items: [
         "Playwright",
-        "Appium",
-        "PyTest",
-        "Hypothesis",
-        "JUnit",
-        "Page Object Model",
+        "Maestro",
+        "PyTest · Hypothesis",
+        "Selenium · Appium",
         "JMeter",
         "Postman / RestAssured",
       ],
     },
     {
-      h: "AI / Backend",
+      h: "DevOps & Delivery",
       items: [
-        "CrewAI · Agentic RAG",
-        "ChromaDB",
-        "Django / DRF",
-        "React",
-        "Node.js",
-        "REST / OpenAPI",
-      ],
-    },
-    {
-      h: "DevOps & CI/CD",
-      items: [
-        "Jenkins",
         "Docker",
         "Kubernetes",
-        "Git / GitHub Actions",
+        "GitHub Actions · Jenkins",
+        "Vercel",
         "Grafana",
-        "JIRA · TestRail · Confluence",
+        "JIRA · TestRail",
       ],
     },
   ],

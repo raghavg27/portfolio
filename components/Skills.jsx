@@ -5,9 +5,9 @@ export default function Skills() {
     <section id="skills">
       <div className="wrap">
         <div className="sechead reveal">
-          <span className="folio">§ Toolkit</span>
+          <span className="folio">§ Stack</span>
           <h2>
-            What I <em>work with</em>.
+            The <em>stack</em> I build on.
           </h2>
         </div>
 
