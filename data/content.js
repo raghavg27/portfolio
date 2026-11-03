@@ -772,78 +772,79 @@ export const evaluation = {
   tag: "Test design for non-deterministic systems",
   status: "Current assignment · Handshake AI",
   card:
-    "How I design reproducible evaluation environments for AI coding agents — and what five years of deterministic test design does and does not survive when correctness stops being a single value.",
+    "This is how I build test tasks for AI coding agents that give the same result every time. I also talk about which parts of my five years in testing still help when there is more than one right answer.",
   meta: [
-    ["Role", "QA Engineer — AI Agent Evaluation (contract)"],
+    ["Role", "QA Engineer for AI Agent Evaluation (contract)"],
     ["Since", "March 2026"],
-    ["Unit of work", "A Dockerised task with a verifier"],
+    ["Unit of work", "A task in Docker with a verifier"],
   ],
   links: { live: null, repo: null },
   lede:
-    "Five years of test design rest on one assumption: run it twice, get the same answer. Coding agents break that assumption. Most of what a tester knows survives the break — but only after you rewrite what “pass” means.",
+    "For five years all my tests used one simple rule. If you run a test two times you get the same answer. Coding agents do not follow that rule. Most of what I know as a tester still works but first I had to change what a pass means.",
   problem: [
-    "A deterministic system has one correct output per input, so a test is an equality check. An agent has a set of correct outputs. Two agents can solve the same task by different routes, with different intermediate commands, different file layouts and different orderings, and both be right. Assert on the transcript and you fail correct work. Assert on nothing and you are measuring vibes.",
-    "The second problem is worse, because it is invisible. A failed evaluation is ambiguous by default: when a run goes red, the honest question is whether the agent was wrong or the environment was — a flaky network call, a file leaked from a previous trial, a clock, a version that floated. Until that ambiguity is engineered out, the score is a measurement of your harness rather than of the model.",
+    "So the first thing you asked is why agents are hard to test. With normal software one input gives one correct output. That makes a test a simple check that two values are equal. An agent can give many correct outputs. Two agents can solve the same task in different ways with different commands and different files and both can be right. If I check the transcript I fail good work. If I check nothing I only measure a feeling.",
+    "The second problem is worse to me because you cannot see it. When a run fails you do not know at first who is wrong. It can be the agent or it can be the environment. Maybe a network call was flaky or a file stayed behind from the last trial. Maybe the clock was off or a version moved. If I do not remove these things the score tells you about my setup and not about the model.",
   ],
   approach: {
     p: [
-      "The unit of work is a task, and a task is four things that ship together: a written specification, a Dockerised environment, a reference implementation, and an automated verification suite that defines objective pass/fail. Miss any one of them and what you have is not an evaluation, it is an anecdote.",
-      "The reference implementation is not documentation. It is the control. If the verifier does not pass against a known-good solution, the verifier is wrong — and you find that out before an agent's failure gets misattributed to the agent.",
+      "You also asked what I actually make. I make tasks and each task has four parts which always go together. There is a written spec and a Docker environment. There is a reference solution and a set of automated tests that decide pass or fail. If one part is missing it is not an evaluation. It is only a story.",
+      "The reference solution is not there as documentation. It is the control. I run the tests against a solution that I know is good. If the tests fail on it then the tests are wrong and not the agent. I find that out before anyone blames the agent for my mistake.",
     ],
     diagram: `task/
-├── spec.md            what the agent is asked to do, in prose,
-│                      the way a ticket would actually arrive
+├── spec.md            what the agent must do in plain words
+│                      the way a real ticket would read
 │
 ├── environment/
-│   └── Dockerfile     pinned base image, pinned dependencies,
-│                      clean container per trial,
-│                      no network access at solve time
+│   └── Dockerfile     pinned base image
+│                      pinned dependencies
+│                      a clean container for each trial
+│                      no network while the agent works
 │
-├── solution/          reference implementation — proof the task
-│                      is solvable, and the control the verifier
-│                      is run against first
+├── solution/          the reference solution which shows
+│                      the task can be solved and which
+│                      the tests run against first
 │
 └── tests/             the verifier
-                       asserts on outcomes and artifacts
-                       never on the transcript or the route
-                       deterministic, or it does not ship`,
+                       checks the result and the files
+                       never the transcript or the route
+                       same result every run or it does not ship`,
   },
   decisions: [
     {
       n: "01",
-      h: "Assert on outcomes, never on the route.",
-      p: "The verifier checks what is true once the agent has stopped — the endpoint returns the right shape, the file has the right contents, the process exits clean, the migration applied. Not which commands got it there. That is the whole trick that lets two valid approaches both pass while a wrong outcome still fails, and it is the direct analogue of testing behaviour instead of implementation.",
+      h: "How do I check the work when there is more than one right way?",
+      p: "I check the result and not the steps. When the agent stops my tests look at what is true. Does the endpoint give back the right shape? Does the file have the right content? Did the process exit clean and did the migration run? I do not care which commands got it there. This lets two good approaches both pass and a wrong result still fails. It is the same idea as when you test behaviour and not the implementation.",
     },
     {
       n: "02",
-      h: "Determinism is a property you build, not one you hope for.",
-      p: "Pinned base images, pinned dependency versions, no network at solve time, a clean container per trial, and no state carried between runs. Every source of variance that is not the agent gets removed. The payoff is narrow and total: a red run means one thing.",
+      h: "How do I make the results the same every time?",
+      p: "I do not hope for it. I build it. I pin the base image and the version of every dependency. The agent gets no network while it works. Each trial gets a clean container and nothing carries over from the last run. I take out every cause of change that is not the agent. So when a run fails it can only mean one thing.",
     },
     {
       n: "03",
-      h: "Failure modes are the design target, not a side effect.",
-      p: "Boundary, negative and exploratory cases are aimed at where agents actually break — long-horizon planning that loses the thread halfway, environment state the agent assumed instead of checked, and recovery after a tool call fails. A task that only exercises the happy path tells you nothing you did not already know about a model that was trained on happy paths.",
+      h: "What kind of cases do I write?",
+      p: "I aim at the places where agents really break. One is a long task where the agent loses track halfway through. Another is when the agent guesses the state of the environment and does not check it. The third is how it recovers when a tool call fails. I write boundary and negative and exploratory cases for these. A task that only tests the happy path tells you nothing new because the model was already trained on happy paths.",
     },
     {
       n: "04",
-      h: "A flaky verifier is a broken verifier.",
-      p: "A test that fails one run in twenty is worse than no test, because it launders environment noise into a capability measurement and does it with a straight face. Flakes get fixed or the task gets pulled. They do not get re-run until green.",
+      h: "What do I do with a flaky test?",
+      p: "To me a flaky test is a broken test. If a test fails one run in twenty it is worse than no test. It turns noise from the environment into a score and the score looks real. So I fix the flake or I pull the task out. I do not run it again and again until it goes green.",
     },
     {
       n: "05",
-      h: "Difficulty is calibrated against the reference.",
-      p: "A task every agent trivially passes and a task nothing can pass carry the same amount of signal: none. The reference implementation is the yardstick for how much work a task actually is, which is what lets a set spread across difficulty instead of quietly clustering at whatever was easy to author.",
+      h: "How do I know a task is not too easy or too hard?",
+      p: "I use the reference solution to measure it. If every agent passes a task with no effort it tells you nothing. If no agent can pass it that also tells you nothing. The reference shows how much work the task really is. That way my set has easy and hard tasks and does not all sit at the easy end which is what happens when you only write what is quick to write.",
     },
   ],
   proof: {
-    p: "What carries over from deterministic testing, and what does not.",
+    p: "The last thing you asked was what still works from normal testing and what does not. Here is my honest list.",
     bullets: [
-      "**Carries over:** boundary analysis, negative cases, equivalence partitioning — the discipline of asking what the input space actually looks like before writing a single assertion.",
-      "**Carries over:** treating the test environment as production code. Pinned, reproducible, reviewed, and owned.",
-      "**Carries over:** distrusting a green run you have never watched fail. A test that has not been proved capable of failing is not evidence.",
-      "**Does not carry over:** exact-match assertions. Correctness is a set, not a value.",
-      "**Does not carry over:** a single run as evidence. When the system under test is probabilistic, the pass/fail criterion has to be stable across runs before any individual result means anything.",
-      "**New:** the reference implementation as a control on the verifier — the closest thing this discipline has to a unit test for the test.",
+      "**Still works:** boundary analysis and negative cases and equivalence partitioning. I still ask what the inputs really look like before I write a single check.",
+      "**Still works:** I treat the test environment like production code. It is pinned and you can reproduce it. Someone reviews it and someone owns it.",
+      "**Still works:** I do not trust a green run that I never saw fail. If a test has not shown that it can fail it is not proof of anything.",
+      "**Does not work:** exact match checks. There is a set of right answers and not only one value.",
+      "**Does not work:** one run as proof. The agent does not give the same output each time so the pass or fail rule must stay stable across many runs. Only then does one result mean something.",
+      "**New for me:** the reference solution as a control on the tests. It is the closest thing I have to a unit test for the test.",
     ],
   },
   scope: null,
